@@ -2,20 +2,26 @@
 <h2>My Heroes</h2>
 <ul class = 'heroes'>
     <li *ngFor="let hero of heroes">
+        <!-- class.selected followed by condidtional is class binding to the CSS to allow for different styles on the selected hero -->
         <button [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
         <span class = 'badge'>{{hero.id}} </span>
         <span class="name">{{hero.name}}</span>
     </button>
     </li>
 </ul>
-<div *ngIf = "selectedHero">
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!-- [hero]="selectedHero" is Angular property binding -->
+
+<!--Removed this div and created a hero-detail component to handle the selected hero details
+    <div *ngIf = "selectedHero">
     <h2>{{selectedHero.name | uppercase}} Details</h2>
     <div>id: {{selectedHero.id}}</div>
     <div>
         <label for="hero-name">Hero name: </label>
         <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
     </div>
-</div>
+</div> -->
 <!-- <div><span>id: </span>{{hero.id}}</div>
 <div>
     <label for="name">Hero name: </label>
